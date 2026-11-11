@@ -1,0 +1,200 @@
+/* ============================================================
+   Pan'orama Chiapas — Estilos Globales
+   ============================================================ */
+
+/* --- Variables de Diseño (Paleta del logotipo) --- */
+:root {
+  /* Colores */
+  --color-fondo:      #F4EFE6;
+  --color-principal:  #264936;
+  --color-acento-1:   #B85330;
+  --color-acento-2:   #5A3A22;
+  --color-blanco:     #FFFDF9;
+  --color-gris-claro: #E0D8CC;
+  --color-gris:       #C4BAA8;
+
+  /* Tipografía */
+  --font-serif:  'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-sans:   'Lato', 'Helvetica Neue', Arial, sans-serif;
+
+  /* Espaciado */
+  --section-padding: 5rem 1.5rem;
+  --container-max:   1200px;
+  --border-radius:   12px;
+
+  /* Sombras */
+  --shadow-card: 0 4px 20px rgba(90, 58, 34, 0.12);
+  --shadow-hover: 0 8px 32px rgba(90, 58, 34, 0.22);
+
+  /* Transiciones */
+  --transition: 0.3s ease;
+}
+
+/* --- Reset & Base --- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-fondo);
+  color: var(--color-acento-2);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  color: var(--color-principal);
+  line-height: 1.25;
+}
+
+a {
+  color: var(--color-acento-1);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover {
+  color: var(--color-principal);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* --- Utilidades --- */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  text-align: center;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.section-subtitle {
+  text-align: center;
+  font-family: var(--font-sans);
+  color: var(--color-acento-2);
+  font-size: 1.05rem;
+  max-width: 640px;
+  margin: 0 auto 3rem;
+  font-weight: 300;
+}
+
+.section-divider {
+  width: 80px;
+  height: 3px;
+  background: var(--color-acento-1);
+  margin: 1rem auto 1.5rem;
+  border: none;
+  border-radius: 2px;
+}
+
+/* --- Marcador de Imagen Genérico --- */
+.image-placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(
+    135deg,
+    var(--color-gris-claro) 25%,
+    var(--color-gris) 25%,
+    var(--color-gris) 50%,
+    var(--color-gris-claro) 50%,
+    var(--color-gris-claro) 75%,
+    var(--color-gris) 75%
+  );
+  background-size: 40px 40px;
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-acento-2);
+  font-size: 0.85rem;
+  font-style: italic;
+  overflow: hidden;
+  position: relative;
+}
+
+.placeholder-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(244, 239, 230, 0.85);
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--color-acento-2);
+  z-index: 1;
+}
+
+.placeholder-label svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  fill: none;
+  stroke: var(--color-acento-2);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* --- Botón Principal --- */
+.btn-primary {
+  display: inline-block;
+  background-color: var(--color-acento-1);
+  color: var(--color-blanco);
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  padding: 0.9rem 2.2rem;
+  border: 2px solid var(--color-acento-1);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all var(--transition);
+  letter-spacing: 0.03em;
+}
+
+.btn-primary:hover {
+  background-color: transparent;
+  color: var(--color-acento-1);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* --- Scroll-bar personalizada --- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-fondo);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gris);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-acento-2);
+}
