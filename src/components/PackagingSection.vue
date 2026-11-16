@@ -1,39 +1,6 @@
 <script setup>
-// PackagingSection — Dos opciones de diseño de empaque
-
-const empaques = [
-  {
-    id: 'a',
-    titulo: 'Opción A: Cofre de Madera & Laca',
-    descripcion:
-      'Caja de pino reciclado con motivos de laca de Chiapa de Corzo. Un empaque que rinde homenaje a la maestría artesanal chiapaneca.',
-    etiqueta: 'Artesanal',
-    // tree/wood icon paths
-    iconPaths: [
-      'M12 22V8',
-      'M5 12H2a10 10 0 0 0 20 0h-3',
-      'M8 6l4-4 4 4',
-      'M6 10l6-4 6 4',
-    ],
-  },
-  {
-    id: 'b',
-    titulo: 'Opción B: Estuche Telar & Kraft',
-    descripcion:
-      'Cartón corrugado ecológico con patrones de telares de Zinacantán. Diseño sustentable que abraza la identidad textil indígena.',
-    etiqueta: 'Ecológico',
-    // weave/textile icon paths
-    iconPaths: [
-      'M3 5h18',
-      'M3 10h18',
-      'M3 15h18',
-      'M3 20h18',
-      'M7 3v18',
-      'M12 3v18',
-      'M17 3v18',
-    ],
-  },
-]
+// PackagingSection — Empaque artesanal de colección (Cofre de Madera & Laca)
+import imagenEmpaque from '../assets/empaque.jpeg'
 </script>
 
 <template>
@@ -42,37 +9,69 @@ const empaques = [
       <h2 class="section-title">Diseño del Empaque</h2>
       <hr class="section-divider" />
       <p class="section-subtitle">
-        Dos propuestas que honran la tradición y la sustentabilidad.
+        Una pieza artesanal concebida para honrar la tradición y perdurar en el tiempo.
       </p>
 
-      <div class="packaging__grid">
-        <article
-          v-for="emp in empaques"
-          :key="emp.id"
-          class="packaging__card"
-        >
-          <!-- Espacio para foto del empaque -->
-          <div class="image-placeholder packaging__card-img">
-            <span class="placeholder-label">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg>
-              Foto del empaque
+      <!-- Presentación destacada del empaque -->
+      <article class="packaging__featured">
+        <div class="packaging__media">
+          <img
+            :src="imagenEmpaque"
+            alt="Cofre de Madera & Laca - Pan'orama Chiapas"
+            class="packaging__img"
+          />
+        </div>
+
+        <div class="packaging__info">
+          <div class="packaging__badge-row">
+            <span class="packaging__icon">
+              <!-- Icono artesanal / madera -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22V8"/>
+                <path d="M5 12H2a10 10 0 0 0 20 0h-3"/>
+                <path d="M8 6l4-4 4 4"/>
+                <path d="M6 10l6-4 6 4"/>
+              </svg>
             </span>
+            <span class="packaging__tag">Edición Artesanal</span>
           </div>
 
-          <div class="packaging__card-body">
-            <div class="packaging__card-header">
-              <span class="packaging__card-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                  <path v-for="(d, i) in emp.iconPaths" :key="i" :d="d"/>
-                </svg>
-              </span>
-              <span class="packaging__card-tag">{{ emp.etiqueta }}</span>
+          <h3 class="packaging__title">Cofre de Madera & Laca</h3>
+
+          <p class="packaging__desc">
+            Caja de pino reciclado con motivos de laca de Chiapa de Corzo.
+            Un empaque conmemorativo que rinde homenaje a la maestría de los
+            artesanos chiapanecos.
+          </p>
+
+          <p class="packaging__subdesc">
+            Diseñado especialmente para conservar la frescura y aroma del pan
+            tradicional de horno de leña, convirtiendo cada caja en un souvenir
+            reutilizable de valor cultural.
+          </p>
+
+          <div class="packaging__features">
+            <div class="packaging__feature-item">
+              <span class="packaging__feature-dot"></span>
+              <div>
+                <strong>Material:</strong> Pino reciclado de origen sustentable
+              </div>
             </div>
-            <h3 class="packaging__card-title">{{ emp.titulo }}</h3>
-            <p class="packaging__card-desc">{{ emp.descripcion }}</p>
+            <div class="packaging__feature-item">
+              <span class="packaging__feature-dot"></span>
+              <div>
+                <strong>Inspiración:</strong> Laca tradicional de Chiapa de Corzo
+              </div>
+            </div>
+            <div class="packaging__feature-item">
+              <span class="packaging__feature-dot"></span>
+              <div>
+                <strong>Función:</strong> Protección hermética y pieza de colección
+              </div>
+            </div>
           </div>
-        </article>
-      </div>
+        </div>
+      </article>
     </div>
   </section>
 </template>
@@ -96,74 +95,70 @@ const empaques = [
   background: var(--color-acento-1);
 }
 
-.packaging__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-  gap: 2.5rem;
-}
-
-.packaging__card {
+.packaging__featured {
   background: rgba(255, 253, 249, 0.06);
-  border: 1px solid rgba(255, 253, 249, 0.12);
+  border: 1px solid rgba(255, 253, 249, 0.14);
   border-radius: var(--border-radius);
   overflow: hidden;
   backdrop-filter: blur(6px);
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  align-items: center;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
   transition: transform var(--transition), box-shadow var(--transition);
 }
 
-.packaging__card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+.packaging__featured:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
 }
 
-.packaging__card-img {
-  border-radius: 0;
-  aspect-ratio: 16 / 10;
-  background: linear-gradient(
-    135deg,
-    rgba(90, 58, 34, 0.3) 25%,
-    rgba(90, 58, 34, 0.15) 25%,
-    rgba(90, 58, 34, 0.15) 50%,
-    rgba(90, 58, 34, 0.3) 50%,
-    rgba(90, 58, 34, 0.3) 75%,
-    rgba(90, 58, 34, 0.15) 75%
-  );
-  background-size: 40px 40px;
+.packaging__media {
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+  background: rgba(0, 0, 0, 0.15);
+  overflow: hidden;
 }
 
-.packaging__card-img .placeholder-label {
-  background: rgba(38, 73, 54, 0.7);
-  color: var(--color-gris-claro);
+.packaging__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition);
 }
 
-.packaging__card-img .placeholder-label svg {
-  stroke: var(--color-gris-claro);
+.packaging__featured:hover .packaging__img {
+  transform: scale(1.03);
 }
 
-.packaging__card-body {
-  padding: 1.5rem 1.8rem 2rem;
+.packaging__info {
+  padding: 3rem 2.8rem;
+  display: flex;
+  flex-direction: column;
 }
 
-.packaging__card-header {
+.packaging__badge-row {
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  margin-bottom: 0.8rem;
+  margin-bottom: 1.2rem;
 }
 
-.packaging__card-icon {
+.packaging__icon {
   display: flex;
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   color: var(--color-acento-1);
 }
 
-.packaging__card-icon svg {
+.packaging__icon svg {
   width: 100%;
   height: 100%;
 }
 
-.packaging__card-tag {
+.packaging__tag {
   font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 700;
@@ -171,25 +166,70 @@ const empaques = [
   letter-spacing: 0.1em;
   background: var(--color-acento-1);
   color: var(--color-blanco);
-  padding: 0.25rem 0.8rem;
+  padding: 0.3rem 0.9rem;
   border-radius: 20px;
 }
 
-.packaging__card-title {
-  font-size: 1.3rem;
+.packaging__title {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
   color: var(--color-blanco);
-  margin-bottom: 0.7rem;
+  margin-bottom: 1rem;
 }
 
-.packaging__card-desc {
-  font-size: 0.95rem;
+.packaging__desc {
+  font-size: 1.05rem;
   color: var(--color-gris-claro);
   line-height: 1.7;
+  margin-bottom: 0.8rem;
 }
 
-@media (max-width: 640px) {
-  .packaging__grid {
+.packaging__subdesc {
+  font-size: 0.95rem;
+  color: var(--color-gris);
+  line-height: 1.65;
+  margin-bottom: 1.8rem;
+}
+
+.packaging__features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-top: 1px solid rgba(255, 253, 249, 0.12);
+  padding-top: 1.2rem;
+}
+
+.packaging__feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.92rem;
+  color: var(--color-gris-claro);
+}
+
+.packaging__feature-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-acento-1);
+  flex-shrink: 0;
+}
+
+.packaging__feature-item strong {
+  color: var(--color-blanco);
+}
+
+@media (max-width: 900px) {
+  .packaging__featured {
     grid-template-columns: 1fr;
+  }
+
+  .packaging__media {
+    min-height: 280px;
+    max-height: 380px;
+  }
+
+  .packaging__info {
+    padding: 2rem 1.8rem;
   }
 }
 </style>

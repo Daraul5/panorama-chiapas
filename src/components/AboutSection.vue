@@ -1,5 +1,6 @@
 <script setup>
 // AboutSection — Misión, Visión e introducción del proyecto
+import imagenNosotros from '../assets/nosotros.jpeg'
 </script>
 
 <template>
@@ -14,14 +15,13 @@
       </p>
 
       <div class="about__grid">
-        <!-- Imagen lateral -->
+        <!-- Imagen lateral del proyecto -->
         <div class="about__image">
-          <div class="image-placeholder about__photo">
-            <span class="placeholder-label">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg>
-              Foto del proyecto
-            </span>
-          </div>
+          <img
+            :src="imagenNosotros"
+            alt="Pan'orama Chiapas - Tradición Panadera"
+            class="about__photo-img"
+          />
         </div>
 
         <!-- Misión y Visión -->
@@ -78,10 +78,27 @@
   align-items: center;
 }
 
-.about__photo {
-  aspect-ratio: 3 / 4;
+.about__image {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+}
+
+.about__photo-img {
+  width: 100%;
+  height: auto;
+  max-height: 520px;
+  object-fit: cover;
   border-radius: var(--border-radius);
   border: 3px solid var(--color-gris-claro);
+  box-shadow: var(--shadow-card);
+  transition: transform var(--transition), box-shadow var(--transition);
+  display: block;
+}
+
+.about__photo-img:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-hover);
 }
 
 .about__cards {
@@ -133,9 +150,8 @@
     grid-template-columns: 1fr;
   }
 
-  .about__photo {
-    aspect-ratio: 16 / 9;
-    max-height: 280px;
+  .about__photo-img {
+    max-height: 320px;
   }
 }
 </style>

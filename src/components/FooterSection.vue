@@ -1,61 +1,31 @@
 <script setup>
-// FooterSection — Logo, redes sociales y datos de contacto
+// FooterSection — Logo, redes sociales (FB, IG) e información de origen
 import logo from '../assets/logo.png'
 
 const redes = [
   {
     nombre: 'Facebook',
-    url: '#',
+    url: 'https://www.facebook.com/share/14w6wod1WjE/',
     path: 'M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z',
   },
   {
     nombre: 'Instagram',
-    url: '#',
+    url: 'https://www.instagram.com/panorama.chiapas?utm_source=qr&psln=MTIwZzB2YTI1ZHNscQ==',
     paths: [
       'M3 7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7z',
       'M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z',
     ],
     circle: { cx: 17.5, cy: 6.5, r: 1.5 },
   },
-  {
-    nombre: 'TikTok',
-    url: '#',
-    path: 'M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5',
-  },
-  {
-    nombre: 'WhatsApp',
-    url: '#',
-    paths: [
-      'M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z',
-    ],
-  },
 ]
 
-const contacto = [
-  {
-    texto: 'contacto@panoramachiapas.mx',
-    // envelope icon
-    paths: [
-      'M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z',
-      'M22 6l-10 7L2 6',
-    ],
-  },
-  {
-    texto: '+52 (961) 000-0000',
-    // phone icon
-    paths: [
-      'M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z',
-    ],
-  },
-  {
-    texto: 'Tuxtla Gutiérrez, Chiapas, México',
-    // map pin icon
-    paths: [
-      'M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z',
-    ],
-    circle: { cx: 12, cy: 10, r: 3 },
-  },
-]
+const ubicacion = {
+  texto: 'Tuxtla Gutiérrez, Chiapas, México',
+  paths: [
+    'M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z',
+  ],
+  circle: { cx: 12, cy: 10, r: 3 },
+}
 
 const enlaces = [
   { nombre: 'Inicio', url: '#' },
@@ -90,21 +60,19 @@ const enlaces = [
           </ul>
         </div>
 
-        <!-- Columna 3: Contacto -->
-        <div class="footer__contact">
-          <h4 class="footer__heading">Contacto</h4>
-          <ul class="footer__contact-list">
-            <li v-for="(item, i) in contacto" :key="i" class="footer__contact-item">
-              <svg class="footer__contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path v-for="(d, j) in item.paths" :key="j" :d="d"/>
-                <circle v-if="item.circle" :cx="item.circle.cx" :cy="item.circle.cy" :r="item.circle.r"/>
-              </svg>
-              <span>{{ item.texto }}</span>
-            </li>
-          </ul>
+        <!-- Columna 3: Somos de -->
+        <div class="footer__location">
+          <h4 class="footer__heading">Somos de</h4>
+          <div class="footer__location-item">
+            <svg class="footer__location-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path v-for="(d, j) in ubicacion.paths" :key="j" :d="d"/>
+              <circle :cx="ubicacion.circle.cx" :cy="ubicacion.circle.cy" :r="ubicacion.circle.r"/>
+            </svg>
+            <span>{{ ubicacion.texto }}</span>
+          </div>
         </div>
 
-        <!-- Columna 4: Redes sociales -->
+        <!-- Columna 4: Redes sociales (FB e IG) -->
         <div class="footer__social">
           <h4 class="footer__heading">Síguenos</h4>
           <div class="footer__social-icons">
@@ -154,7 +122,7 @@ const enlaces = [
 
 .footer__grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1.2fr 1fr;
+  grid-template-columns: 2fr 1fr 1.3fr 1fr;
   gap: 2.5rem;
   padding-bottom: 3rem;
   border-bottom: 1px solid rgba(255, 253, 249, 0.1);
@@ -168,16 +136,6 @@ const enlaces = [
   object-fit: cover;
   margin-bottom: 1rem;
   border: 2px solid rgba(184, 83, 48, 0.4);
-}
-
-.placeholder-label--mini {
-  padding: 0;
-  background: transparent;
-}
-
-.placeholder-label--mini svg {
-  width: 24px;
-  height: 24px;
 }
 
 .footer__brand-name {
@@ -234,23 +192,19 @@ const enlaces = [
   padding-left: 4px;
 }
 
-/* Contacto */
-.footer__contact-list {
-  list-style: none;
-  font-size: 0.9rem;
-}
-
-.footer__contact-item {
+/* Ubicación / Somos de */
+.footer__location-item {
   display: flex;
   align-items: flex-start;
   gap: 0.6rem;
-  margin-bottom: 0.8rem;
-  line-height: 1.5;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-gris-claro);
 }
 
-.footer__contact-icon {
-  width: 18px;
-  height: 18px;
+.footer__location-icon {
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
   margin-top: 2px;
   stroke: var(--color-acento-1);
