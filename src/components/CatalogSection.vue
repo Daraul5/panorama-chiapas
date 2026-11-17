@@ -1,5 +1,15 @@
 <script setup>
 // CatalogSection — Grid de 12 tarjetas del catálogo gastronómico municipal
+import imgCazueleja from '../assets/panes/cazueleja.jpeg'
+import imgMarquesote from '../assets/panes/marquesote.jpeg'
+import imgSalvadillo from '../assets/panes/salvadillo.jpeg'
+import imgRosquillas from '../assets/panes/rosquillas.jpeg'
+import imgTurulete from '../assets/panes/turulete.jpeg'
+import imgPanCacao from '../assets/panes/pan-cacao-platano.jpeg'
+import imgPanCafe from '../assets/panes/pan-fino-cafe.jpeg'
+import imgEmpanaditas from '../assets/panes/empanaditas-requeson.jpeg'
+import imgHojaldras from '../assets/panes/hojaldras-manteca.jpeg'
+import imgGorditas from '../assets/panes/gorditas-maiz-panela.jpeg'
 
 const panes = [
   {
@@ -8,6 +18,7 @@ const panes = [
     nombre: 'Cazueleja / Pan de Yema',
     descripcion:
       'Pan suave horneado en cazuela de barro, enriquecido con yema, anís silvestre y canela.',
+    imagen: imgCazueleja,
   },
   {
     id: 2,
@@ -15,6 +26,7 @@ const panes = [
     nombre: 'Marquesote Coiteco',
     descripcion:
       'Masa ultra esponjosa de almidón de yuca y claras a punto de turrón.',
+    imagen: imgMarquesote,
   },
   {
     id: 3,
@@ -22,6 +34,7 @@ const panes = [
     nombre: 'Salvadillo de Trigo',
     descripcion:
       'Pan seco y crujiente de harina integral.',
+    imagen: imgSalvadillo,
   },
   {
     id: 4,
@@ -29,6 +42,7 @@ const panes = [
     nombre: 'Rosquillas de Manteca',
     descripcion:
       'Estructura crocante horneada a leña.',
+    imagen: imgRosquillas,
   },
   {
     id: 5,
@@ -36,6 +50,7 @@ const panes = [
     nombre: 'Turulete Costeño',
     descripcion:
       'Galleta de maíz tostado, piloncillo y queso seco.',
+    imagen: imgTurulete,
   },
   {
     id: 6,
@@ -43,6 +58,7 @@ const panes = [
     nombre: 'Marquesote Frailescano',
     descripcion:
       'Pan aireado con notas lácteas y queso prensado.',
+    imagen: imgMarquesote,
   },
   {
     id: 7,
@@ -50,6 +66,7 @@ const panes = [
     nombre: 'Marquesote Bañado',
     descripcion:
       'Bizcocho infusionado con jarabe de canela, limón criollo y anís estrella.',
+    imagen: imgMarquesote,
   },
   {
     id: 8,
@@ -57,6 +74,7 @@ const panes = [
     nombre: 'Pan de Cacao y Plátano',
     descripcion:
       'Masa densa de plátano macho y cacao criollo.',
+    imagen: imgPanCacao,
   },
   {
     id: 9,
@@ -64,6 +82,7 @@ const panes = [
     nombre: 'Pan Fino con Café',
     descripcion:
       'Pan dulce con infusión de café arábica y relleno de queso crema.',
+    imagen: imgPanCafe,
   },
   {
     id: 10,
@@ -71,6 +90,7 @@ const panes = [
     nombre: 'Empanaditas de Requesón',
     descripcion:
       'Masa quebrada rellena de requesón dulce.',
+    imagen: imgEmpanaditas,
   },
   {
     id: 11,
@@ -78,6 +98,7 @@ const panes = [
     nombre: 'Hojaldras de Manteca',
     descripcion:
       'Finas capas con barniz de piloncillo.',
+    imagen: imgHojaldras,
   },
   {
     id: 12,
@@ -85,6 +106,7 @@ const panes = [
     nombre: 'Gorditas de Maíz y Panela',
     descripcion:
       'Panecillos rústicos de maíz dulce.',
+    imagen: imgGorditas,
   },
 ]
 </script>
@@ -105,12 +127,14 @@ const panes = [
           :key="pan.id"
           class="catalog__card"
         >
-          <!-- Espacio para foto del pan -->
-          <div class="image-placeholder catalog__card-img">
-            <span class="placeholder-label">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg>
-              Foto del pan
-            </span>
+          <!-- Fotografía real del pan -->
+          <div class="catalog__card-media">
+            <img
+              :src="pan.imagen"
+              :alt="pan.nombre"
+              class="catalog__card-img"
+              loading="lazy"
+            />
           </div>
 
           <div class="catalog__card-body">
@@ -144,6 +168,8 @@ const panes = [
   box-shadow: var(--shadow-card);
   transition: transform var(--transition), box-shadow var(--transition);
   border: 1px solid var(--color-gris-claro);
+  display: flex;
+  flex-direction: column;
 }
 
 .catalog__card:hover {
@@ -151,14 +177,32 @@ const panes = [
   box-shadow: var(--shadow-hover);
 }
 
-.catalog__card-img {
-  border-radius: 0;
+.catalog__card-media {
+  width: 100%;
   aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background-color: #ebe4d8;
+  position: relative;
+}
+
+.catalog__card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition);
+}
+
+.catalog__card:hover .catalog__card-img {
+  transform: scale(1.06);
 }
 
 .catalog__card-body {
   padding: 1.4rem 1.5rem 1.6rem;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .catalog__card-number {
@@ -177,12 +221,14 @@ const panes = [
   align-items: center;
   justify-content: center;
   box-shadow: 0 2px 8px rgba(184, 83, 48, 0.35);
+  z-index: 2;
 }
 
 .catalog__card-name {
   font-size: 1.15rem;
   color: var(--color-principal);
   margin-bottom: 0.3rem;
+  padding-right: 2rem;
 }
 
 .catalog__card-municipio {
